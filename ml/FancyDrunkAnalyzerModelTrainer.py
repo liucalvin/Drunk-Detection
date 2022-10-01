@@ -69,14 +69,30 @@ def format_row(set):
                         result[type + '_' + metric + '_' + v] = set['faces'][0][type][metric][v]
     return result
 
+# Generates a single row [number1, number2...]
+def format_row_new(set):
+    result = []
+    for type in types:
+        for metric in set['faces'][0][type]:
+            if isinstance(set['faces'][0][type][metric], dict):
+                for v in set['faces'][0][type][metric]:
+                    if isinstance(set['faces'][0][type][metric][v], dict):
+                        for w in set['faces'][0][type][metric][v]:
+                            #print(type + '_' + metric + '_' + v + '_' + w + " = " + str(set['faces'][0][type][metric][v][w]))
+                            result.append(set['faces'][0][type][metric][v][w])
+                    else:
+                        #print(type + '_' + metric + '_' + v + " = " + str(set['faces'][0][type][metric][v]))
+                        result.append(set['faces'][0][type][metric][v])
+    return result
+
 # sober_set = [{person 1}, {person 2}, {person 3}]
 # set = {person}
 # Format the sets properly into tables
 for set in drunk_set:
-    drunk_table.append(format_row(set))
+    drunk_table.append(format_row_new(set))
     
 for set in sober_set:
-    sober_table.append(format_row(set))
+    sober_table.append(format_row_new(set))
 
 #print(drunk_table)   
 #print(sober_table)
@@ -124,11 +140,14 @@ def evaluate_model():
     print("Evaluating Baseline Model")
     estimator = KerasClassifier(model=create_baseline(), epochs=100, batch_size=5, verbose=0)
     print("Created Estimator")
-    kfold = StratifiedKFold(n_splits=10, shuffle=True)
+    kfold = StratifiedKFold(n_splits=2, shuffle=True)
     print("Created kfold")
     results = cross_val_score(estimator, x, y, cv=kfold)
     print("Created results")
     print("Baseline: %.2f%% (%.2f%%)" % (results.mean()*100, results.std()*100))
+
+x = np.array(x).reshape(-1, 1)
+y = np.array(y)
 
 evaluate_model()
 
