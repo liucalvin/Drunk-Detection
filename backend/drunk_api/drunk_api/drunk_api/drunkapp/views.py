@@ -1,6 +1,9 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from drunk_api.drunkapp.serializers import UserSerializer, GroupSerializer
+from django.http import HttpResponse
+import requests
+import json
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -19,9 +22,17 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
 
 
-class ResultsViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows results to be viewed.
-    """
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
+def index(request):
+    return HttpResponse("Hello world!")
+
+
+# class ResultsViewSet(viewsets.ModelViewSet):
+#     """
+#     API endpoint that allows results to be viewed.
+#     """
+#     r = requests.get('https://randomuser.me/api/?results=40')
+#     print(r)
+#     # r_status = r.status_code
+#     # # If it is a success
+#     # if r_status == 200:
+#     #     print(r)

@@ -1,6 +1,12 @@
 # Drunk API
 
-1. Create a virtual environment
+1. Open a terminal in the backend folder
+
+```
+cd backend/
+```
+
+2. Create and activate a virtual environment
 
 ```sh
 python3 -m venv env
@@ -10,14 +16,14 @@ source env/bin/activate
 source env/scripts/activate
 ```
 
-2. Install dependencies
+2. Move into the project folder and install dependencies
 
 ```sh
-pip install django
-pip install djangorestframework
+cd drunk_api/
+pip install -r requirements.txt
 ```
 
-3. Add .env file in the `backend/drunk_api/drunk_api` folder with the following fields:
+3. Add an .env file in the `backend/drunk_api/drunk_api` folder with the following fields:
 
 - SECRET_KEY
 
