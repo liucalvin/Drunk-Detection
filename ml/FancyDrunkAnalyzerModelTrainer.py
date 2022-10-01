@@ -36,9 +36,10 @@ for file in drunk_files:
     drunk_set.append(x)
 
 # x is an array of input data
-# y is an array of output strings (ie "Sober" or "Drunk")
+# y is an array of output integers (ie 0 = sober or 1 = drunk)
 
 x = []
+y = []
 si = 0
 di = 0
 for i in range(0, len(sober_set) + len(drunk_set)):
@@ -48,7 +49,14 @@ for i in range(0, len(sober_set) + len(drunk_set)):
     if (di >= len(drunk_set)):
         drunk = False
     if (di < len(sober_set) or si < len(drunk_set)):
-        x.append(drunk_set[di])
+        if drunk:
+            x.append(drunk_set[di])
+            y.append(1)
+            di+=1
+        else:
+            x.append(sober_set[si])
+            y.append(0)
+            si+=1
 
 
 
