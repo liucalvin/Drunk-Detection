@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+import random
 import sys
 import json
 import numpy as np
@@ -22,17 +23,33 @@ drunk_files = os.listdir(drunk_path)
 
 print("\nSOBER FILES\n")
 for file in sober_files:
-    print("File: " + file)
+    #print("File: " + file)
     x = json.load(open(sober_path + "\\" + file))
-    print(x)
+    #print(x)
     sober_set.append(x)
 
 print("\nDRUNK FILES\n")
 for file in drunk_files:
-    print("File: " + file)
+    #print("File: " + file)
     x = json.load(open(drunk_path + "\\" + file))
-    print(x)
+    #print(x)
     drunk_set.append(x)
+
+# x is an array of input data
+# y is an array of output strings (ie "Sober" or "Drunk")
+
+x = []
+si = 0
+di = 0
+for i in range(0, len(sober_set) + len(drunk_set)):
+    drunk = bool(random.getrandbits(1))
+    if (si >= len(sober_set)):
+        drunk = True
+    if (di >= len(drunk_set)):
+        drunk = False
+    if (di < len(sober_set) or si < len(drunk_set)):
+        x.append(drunk_set[di])
+
 
 
 #x, y = load_breast_cancer(return_X_y=True)
