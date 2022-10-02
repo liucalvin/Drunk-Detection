@@ -68,6 +68,10 @@ function App() {
             </Flex>
           </>
         ) : (
+          <Image 
+          src="../public/IMG_0305.jpg"
+          maxW="100%"
+          />
           <Box p="10" maxW="520px" borderWidth="1px">
             <Flex align="baseline" mt={2}>
               <Badge colorScheme="purple">ATTENTION</Badge>
