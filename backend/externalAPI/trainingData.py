@@ -3,17 +3,12 @@ import json
 import os
 import time
 
-sober_set = []
-drunk_set = []
-
 sober_files = os.listdir("../../ml/training-img/sober-img")
 drunk_files = os.listdir("../../ml/training-img/drunk-img")
 
 
 DRUNK_BASE_URL = "https://github.com/maxmastali/Drunk-Detection/blob/main/ml/training-img/drunk-img/"
 SOBER_BASE_URL = "https://github.com/maxmastali/Drunk-Detection/blob/main/ml/training-img/sober-img/"
-
-#listdear
 
 # defining the api-endpoints
 API_ENDPOINT_PARAMETERS = "https://api-us.faceplusplus.com/facepp/v3/detect"
@@ -37,10 +32,6 @@ for img in drunk_files:
 for url in imageURLS:
     noSpacesImageURLS.append(url.replace(" ","%20"))
 
-index = 0
-
-#"https://github.com/maxmastali/Drunk-Detection/blob/main/ml/taining-img/sober-img/Screenshot%202022-10-01%20124835.jpg?raw=true""
-#https://github.com/maxmastali/Drunk-Detection/blob/main/ml/taining-img/sober-img/Capture4.PNG?raw=true
 for url in noSpacesImageURLS:
 
     print(url)
@@ -86,7 +77,5 @@ for url in noSpacesImageURLS:
     # close file
     text_file.close()
 
-    index+=1
-
-    time.sleep(.7)
+    time.sleep(.5)
 
