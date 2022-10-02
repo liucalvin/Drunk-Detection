@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -54,6 +55,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = "drunk_api.urls"
@@ -76,9 +79,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "drunk_api.wsgi.application"
 
-
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+CORS_ALLOWED_ORIGINS = [
+    env("CLIENT_URL"),
+]
 
 DATABASES = {
     "default": {
