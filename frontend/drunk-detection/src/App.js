@@ -11,6 +11,7 @@ import {
   Text,
   Badge,
   Flex,
+  Image,
 } from "@chakra-ui/react";
 
 function App() {
@@ -39,14 +40,8 @@ function App() {
         console.log(response);
         const data = await response.json();
         const parsed = JSON.parse(data.success);
-        // console.log(parsed);
-        // console.log(parsed.faces);
-        // console.log(parsed.faces[0]);
-        // console.log(parsed.faces[0].attributes);
         setResults(parsed.faces[0].attributes);
         setResponse(data.success);
-        // const data = await response.body.getReader();
-        // console.log(data);
       }
     } catch (error) {
       console.log("error!!!");
@@ -80,7 +75,7 @@ function App() {
           </>
         ) : (
           <>
-            <Image src="../public/IMG_0305.jpg" maxW="100%" />
+            <Image src="IMG_0305.jpg" maxW="100%" position="absolute" />
             <Box p="10" maxW="520px" borderWidth="1px">
               <Flex align="baseline" mt={2}>
                 <Badge colorScheme="purple">ATTENTION</Badge>
