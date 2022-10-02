@@ -31,6 +31,7 @@ def are_you_drunk(input_json):
     def format_row_new(set):
         result = []
         for type in types:
+            #print("MODULE: " + set)
             for metric in set['faces'][0][type]:
                 if isinstance(set['faces'][0][type][metric], dict):
                     for v in set['faces'][0][type][metric]:
@@ -59,6 +60,12 @@ def are_you_drunk(input_json):
     fancy_model = tf.keras.models.load_model('models/baseline_0.h5')
 
     # make a prediction:
-    yhat = fancy_model.predict(format_row_new(json))
+    #print(np.array(format_row_new(input_json)))
+    yhat = fancy_model.predict(np.array([format_row_new(input_json)]))
 
     return yhat
+
+
+#print("Is Sober Drunk? --> " + str(are_you_drunk(json.load(open('./test/example_sober_face.json')))))
+#print("Is Drunk Drunk? --> " + str(are_you_drunk(json.load(open('./test/example_drunk_face.json')))))
+#print("Is Osman Drunk? --> " + str(are_you_drunk(json.load(open('./test/sober_test_osman.json')))))

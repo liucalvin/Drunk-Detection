@@ -109,7 +109,7 @@ for set in sober_set:
 
 #print(drunk_set[0]['faces'][0]['landmark'])
 
-drunk_table = drunk_table[0:18]
+# drunk_table = drunk_table[0:18]
 
 x = []
 y = []
@@ -135,7 +135,7 @@ for i in range(0, len(sober_table) + len(drunk_table)):
 def create_baseline():
     print("Creating Baseline Model")
     model = Sequential()
-    model.add(Dense(len(sober_table[0]), input_shape=(len(sober_table[0]),), activation='relu'))
+    model.add(Dense(400, input_shape=(len(sober_table[0]),), activation='relu'))
     model.add(Dense(1, activation='sigmoid'))
     # Compile Model
     print("Compiling Baseline Model")
@@ -146,7 +146,7 @@ def create_baseline():
 # evaluate model with standardized dataset
 def evaluate_model():
     print("Evaluating Baseline Model")
-    estimator = KerasClassifier(model=create_baseline(), epochs=100, batch_size=5, verbose=0)
+    estimator = KerasClassifier(model=create_baseline(), epochs=200, batch_size=10, verbose=2)
     print("Created Estimator")
     kfold = StratifiedKFold(n_splits=5, shuffle=True)
     print("Created kfold")
@@ -154,11 +154,21 @@ def evaluate_model():
     print("Created results")
     print("Baseline: %.2f%% (%.2f%%)" % (results.mean()*100, results.std()*100))
     print("Saving Model")
-    estimator.model.save('models/baseline_0.h5')
+    estimator.model.save('models/baseline_1.h5')
+    print("Testing Model")
+    print("Drunk Face --> " + str(estimator.model.predict(np.array([format_row_new(json.load(open('./test/example_drunk_face.json')))]))))
+    print("Sober Face --> " + str(estimator.model.predict(np.array([format_row_new(json.load(open('./test/example_sober_face.json')))]))))
+    print("Osman Face --> " + str(estimator.model.predict(np.array([format_row_new(json.load(open('./test/sober_test_osman.json')))]))))
+    print("Loading Model")
+    print("Testing Loaded Model")
+    print("Drunk Face --> " + str(tf.keras.models.load_model('models/baseline_1.h5').predict(np.array([format_row_new(json.load(open('./test/example_drunk_face.json')))]))))
+    print("Sober Face --> " + str(tf.keras.models.load_model('models/baseline_1.h5').predict(np.array([format_row_new(json.load(open('./test/example_sober_face.json')))]))))
+    print("Osman Face --> " + str(tf.keras.models.load_model('models/baseline_1.h5').predict(np.array([format_row_new(json.load(open('./test/sober_test_osman.json')))]))))
+    
 
 x = np.array(x)
 y = np.array(y)
-#print(x)
+# print(x)
 
 evaluate_model()
 
