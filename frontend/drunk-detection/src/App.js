@@ -81,7 +81,6 @@ function App() {
                 Male Beauty Score: {results.beauty.male_score}
               </Text>
               <Text pt="24px">Gender: {results.gender.value}</Text>
-              <Text pt="24px">Sadness</Text>
               <Text pt="24px">Sadness: {results.emotion.sadness}</Text>
               <Text pt="24px">Disgust: {results.emotion.disgust}</Text>
               <Text pt="24px">Anger: {results.emotion.anger}</Text>
