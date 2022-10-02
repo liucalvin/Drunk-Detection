@@ -63,3 +63,8 @@ class SubmitImage(APIView):
                 return Response(json.dumps("request"))
         else:
             return Response("Image required!", 400)
+
+
+class Pong(APIView):
+    def get(self, request):
+        return Response(json.dumps("PONG"))
