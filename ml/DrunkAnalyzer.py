@@ -16,7 +16,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import StratifiedKFold
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import Pipeline
-#import keras.datasets as keras_data
+import keras.datasets as keras_data
 
 def are_you_drunk(input_json):
 
