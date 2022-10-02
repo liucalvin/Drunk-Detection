@@ -91,11 +91,12 @@ class CheckDrunk(APIView):
         to submit a json
         """
         body_unicode = request.body.decode('utf-8')
-        body_data = json.loads(body_unicode)
+        body_data = json.dumps(body_unicode)
         if request and request.body:
             print(body_data)
-            return Response({"success": round(random.uniform(0, 1.000), 2)})
+            return Response({"success":  round(random.uniform(0, 1.000), 2)})
             # are_you_drunk(body_data)
+            #  round(random.uniform(0, 1.000), 2)
         else:
             return Response("JSON required!", 400)
 
