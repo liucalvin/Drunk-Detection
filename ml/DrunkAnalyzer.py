@@ -63,9 +63,9 @@ def are_you_drunk(input_json):
     #print(np.array(format_row_new(input_json)))
     yhat = fancy_model.predict(np.array([format_row_new(input_json)]))
 
-    return yhat
+    return yhat[0][0]
 
 
-#print("Is Sober Drunk? --> " + str(are_you_drunk(json.load(open('./test/example_sober_face.json')))))
-#print("Is Drunk Drunk? --> " + str(are_you_drunk(json.load(open('./test/example_drunk_face.json')))))
-#print("Is Osman Drunk? --> " + str(are_you_drunk(json.load(open('./test/sober_test_osman.json')))))
+# print("Is Sober Drunk? --> " + str(are_you_drunk(json.load(open('./test/example_sober_face.json')))))
+# print("Is Drunk Drunk? --> " + str(are_you_drunk(json.load(open('./test/example_drunk_face.json')))))
+# print("Is Osman Drunk? --> " + str(are_you_drunk(json.load(open('./test/sober_test_osman.json')))))
