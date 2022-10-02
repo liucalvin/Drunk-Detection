@@ -18,9 +18,6 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import Pipeline
 #import keras.datasets as keras_data
 
-#from sklearn.datasets import load_breast_cancer
-#from sklearn.model_selection import train_test_split
-
 sober_set = []
 drunk_set = []
 
@@ -69,6 +66,7 @@ def format_row(set):
                         result[type + '_' + metric + '_' + v] = set['faces'][0][type][metric][v]
     return result
 
+string_to_int = {'Male' : 0, 'Female' : 1, 'None' : 2}
 # Generates a single row [number1, number2...]
 def format_row_new(set):
     result = []
@@ -79,10 +77,22 @@ def format_row_new(set):
                     if isinstance(set['faces'][0][type][metric][v], dict):
                         for w in set['faces'][0][type][metric][v]:
                             #print(type + '_' + metric + '_' + v + '_' + w + " = " + str(set['faces'][0][type][metric][v][w]))
-                            result.append(set['faces'][0][type][metric][v][w])
+                            adders = set['faces'][0][type][metric][v][w]
+                            if (isinstance(adders, str)):
+                                if (adders in string_to_int):
+                                    adders = string_to_int[adders]
+                                else:
+                                    adders = -1
+                            result.append(adders)
                     else:
                         #print(type + '_' + metric + '_' + v + " = " + str(set['faces'][0][type][metric][v]))
-                        result.append(set['faces'][0][type][metric][v])
+                        adders = set['faces'][0][type][metric][v]
+                        if (isinstance(adders, str)):
+                            if (adders in string_to_int):
+                                adders = string_to_int[adders]
+                            else:
+                                adders = -1
+                        result.append(adders)
     return result
 
 # sober_set = [{person 1}, {person 2}, {person 3}]
@@ -98,6 +108,8 @@ for set in sober_set:
 #print(sober_table)
 
 #print(drunk_set[0]['faces'][0]['landmark'])
+
+drunk_table = drunk_table[0:18]
 
 x = []
 y = []
@@ -119,10 +131,6 @@ for i in range(0, len(sober_table) + len(drunk_table)):
             y.append(0)
             si+=1
 
-#x, y = load_breast_cancer(return_X_y=True)
-
-# x_train, x_test, y_train, y_test = train_test_split(x, y, random_state=0)
-
 # Baseline Model
 def create_baseline():
     print("Creating Baseline Model")
@@ -140,25 +148,26 @@ def evaluate_model():
     print("Evaluating Baseline Model")
     estimator = KerasClassifier(model=create_baseline(), epochs=100, batch_size=5, verbose=0)
     print("Created Estimator")
-    kfold = StratifiedKFold(n_splits=2, shuffle=True)
+    kfold = StratifiedKFold(n_splits=5, shuffle=True)
     print("Created kfold")
     results = cross_val_score(estimator, x, y, cv=kfold)
     print("Created results")
     print("Baseline: %.2f%% (%.2f%%)" % (results.mean()*100, results.std()*100))
+    print("Saving Model")
+    estimator.model.save('models/baseline_0.h5')
 
-x = np.array(x).reshape(-1, 1)
+x = np.array(x)
 y = np.array(y)
+#print(x)
 
 evaluate_model()
 
-# check otu a sample
-#print(x_train.shape)
-#print(x_test.shape)
-#print(y_train.shape)
-#print(y_test.shape)
+# To load the model:
+# tf.keras.models.load_model('models/baseline_0.h5')
 
-#print(x_train[5])
+# To make a prediction:
+# yhat = model.predict(X)
 
-#print(x)
-
-
+# DEPRICATED
+# tf.saved_model.save(one_step_model, 'one_step')
+# one_step_reloaded = tf.saved_model.load('one_step')
