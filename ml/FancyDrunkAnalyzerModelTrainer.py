@@ -112,6 +112,8 @@ for set in sober_set:
 
 #print(drunk_set[0]['faces'][0]['landmark'])
 
+drunk_table = drunk_table[0:18]
+
 x = []
 y = []
 si = 0
@@ -149,7 +151,7 @@ def evaluate_model():
     print("Evaluating Baseline Model")
     estimator = KerasClassifier(model=create_baseline(), epochs=100, batch_size=5, verbose=0)
     print("Created Estimator")
-    kfold = StratifiedKFold(n_splits=2, shuffle=True)
+    kfold = StratifiedKFold(n_splits=5, shuffle=True)
     print("Created kfold")
     results = cross_val_score(estimator, x, y, cv=kfold)
     print("Created results")
