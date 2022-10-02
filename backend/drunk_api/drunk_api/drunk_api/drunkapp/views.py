@@ -63,8 +63,10 @@ class SubmitImage(APIView):
                 print(file.__dict__)
                 with file.open("rb") as img_file:
                     encodedImage = base64.b64encode(img_file.read())
-                    print(encodedImage)
-                return Response(json.dumps({"successfully encoded to base64:": encodedImage}))
+                    # print(encodedImage)
+                return Response({
+                    "success": encodedImage
+                })
         else:
             return Response("Image required!", 400)
 
