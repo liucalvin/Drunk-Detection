@@ -22,16 +22,25 @@ function App() {
     formData.append("file", input);
 
     try {
-      console.log(process.env.REACT_APP_DRUNK_API_URL);
-      const response = await fetch(`${process.env.REACT_APP_DRUNK_API_URL}/api/submit`, {
-        method: "POST",
-        body: formData,
-      });
+      console.log(
+        "api endpoint:",
+        `${process.env.REACT_APP_DRUNK_API_URL}/api/submit/`
+      );
+      const response = await fetch(
+        `${process.env.REACT_APP_DRUNK_API_URL}/api/submit/`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       if (response) {
-        console.log(response.body);
+        console.log(response);
         const data = await response.json();
-        setResponse(data);
+        console.log(data.success);
+        setResponse(data.success);
+        // const data = await response.body.getReader();
+        // console.log(data);
       }
     } catch (error) {
       console.log("error!!!");
@@ -45,7 +54,9 @@ function App() {
         {response ? (
           <>
             <Flex align="baseline" mt={2} flexDirection="column">
-              <Text>{response.toString()}</Text>
+              <Text maxW="500px" pt="24px" maxH="400px">
+                {response.toString()}
+              </Text>
               <Button
                 mt="24px"
                 onClick={() => {
