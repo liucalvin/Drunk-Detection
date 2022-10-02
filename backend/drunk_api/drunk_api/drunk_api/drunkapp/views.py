@@ -4,6 +4,7 @@ from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from drunk_api.drunkapp.externalAPI.internalFileUpload import face_plus_plus_analysis
 from drunk_api.drunkapp.serializers import UserSerializer, GroupSerializer
 from django.http import HttpResponse
 import requests
@@ -63,9 +64,9 @@ class SubmitImage(APIView):
                 print(file.__dict__)
                 with file.open("rb") as img_file:
                     encodedImage = base64.b64encode(img_file.read())
-                    # print(encodedImage)
+                    data = face_plus_plus_analysis(encodedImage)
                 return Response({
-                    "success": encodedImage
+                    "success": data
                 })
         else:
             return Response("Image required!", 400)
