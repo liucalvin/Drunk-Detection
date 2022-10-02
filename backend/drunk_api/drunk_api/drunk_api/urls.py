@@ -23,5 +23,6 @@ router.register(r'groups', views.GroupViewSet)
 
 urlpatterns = [
     path('api/submit/', views.SubmitImage.as_view(), name="submit"),
+    path('api/check_drunk/', views.CheckDrunk.as_view(), name="check_drunk"),
     path('api/ping/', views.Pong.as_view(), name="ping"),
 ]
