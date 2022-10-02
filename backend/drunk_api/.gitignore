@@ -46,7 +46,6 @@ coverage.xml
 
 # Developers
 *.sw*
-manage.py
 .DS_Store
 
 # example database
