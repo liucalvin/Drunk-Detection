@@ -54,14 +54,15 @@ function App() {
         //   }
         // );
         // if (drunkResponse) {
-        // console.log("================");
-        // console.log(drunkResponse);
-        // const data = await drunkResponse.json();
-        // const parsed = JSON.parse(data.success);
-        // console.log(parsed);
-        setResultsDrunk(Math.random());
+        //   console.log("================");
+        //   console.log(drunkResponse);
+        //   const data = await drunkResponse.json();
+        //   const parsed = JSON.parse(data.success);
+        //   console.log(parsed);
+        //   setResultsDrunk(Math.random());
         //   setResponseDrunk(data.success);
         // }
+        setResultsDrunk(Math.random());
       }
     } catch (error) {
       console.log("error!!!");
