@@ -27,7 +27,7 @@ pip install -r requirements.txt
 
 - SECRET_KEY
 
-4. To run the server:
+4. To run the server (in the `backend/drunk_api/drunk_api/` folder):
 
 ```sh
 python manage.py runserver
