@@ -75,8 +75,37 @@ function App() {
           </>
         ) : (
           <>
-            <Image src="IMG_0305.jpg" maxW="100%" position="absolute" />
-            <Box p="10" maxW="520px" borderWidth="1px">
+            <Image
+              src="IMG_0305.jpg"
+              w="100%"
+              h="33%"
+              top={0}
+              position="absolute"
+              zIndex={-2}
+            />
+            <Image
+              src="IMG_0305.jpg"
+              w="100%"
+              h="34%"
+              top={180}
+              position="absolute"
+              zIndex={-2}
+            />
+            <Image
+              src="IMG_0305.jpg"
+              w="100%"
+              h="33%"
+              bottom={0}
+              position="absolute"
+              zIndex={-2}
+            />
+            <Box
+              p="10"
+              maxW="520px"
+              borderWidth="1px"
+              background="white"
+              borderRadius="4px"
+            >
               <Flex align="baseline" mt={2}>
                 <Badge colorScheme="purple">ATTENTION</Badge>
                 <Text
