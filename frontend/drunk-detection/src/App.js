@@ -31,7 +31,7 @@ function App() {
         `${process.env.REACT_APP_DRUNK_API_URL}/api/submit/`
       );
       const response = await fetch(
-        `${process.env.REACT_APP_DRUNK_API_URL}/api/submit/`,
+        `${process.env.REACT_APP_DRUNK_API_URL}api/submit/`,
         {
           method: "POST",
           body: formData,
