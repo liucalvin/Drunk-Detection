@@ -18,7 +18,6 @@ function App() {
   const [input, setInput] = useState();
   const [response, setResponse] = useState();
   const [results, setResults] = useState();
-  const [response_drunk, setResponseDrunk] = useState();
   const [resultsDrunk, setResultsDrunk] = useState();
 
   const submitForm = async () => {
