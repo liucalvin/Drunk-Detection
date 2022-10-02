@@ -18,8 +18,8 @@ function App() {
   const [input, setInput] = useState();
   const [response, setResponse] = useState();
   const [results, setResults] = useState();
-  #const [response_drunk, setResponseDrunk] = useState();
-  #const [results_drunk, setResultsDrunk] = useState();
+  const [response_drunk, setResponseDrunk] = useState();
+  const [results_drunk, setResultsDrunk] = useState();
 
   const submitForm = async () => {
     const formData = new FormData();
@@ -37,14 +37,6 @@ function App() {
           body: formData,
         }
       );
-      
-      const response_drunk = await fetch(
-        `${process.env.REACT_APP_DRUNK_API_URL}/api/check_drunk/`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
 
       if (response) {
         console.log(response);
@@ -52,14 +44,23 @@ function App() {
         const parsed = JSON.parse(data.success);
         setResults(parsed.faces[0].attributes);
         setResponse(data.success);
+        console.log(JSON.stringify(parsed));
+
+        const drunkResponse = await fetch(
+          `${process.env.REACT_APP_DRUNK_API_URL}/api/check_drunk/`,
+          {
+            method: "POST",
+            body: parsed,
+          }
+        );
+        if (drunkResponse) {
+          console.log(drunkResponse);
+          const data = await drunkResponse.json();
+          const parsed = JSON.parse(data.success);
+          setResultsDrunk(data.success);
+          setResponseDrunk(data.success);
+        }
       }
-      //if (response_drunk) {
-      //  console.log(response_drunk);
-      //  const data = await response_drunk.json();
-      //  const parsed = JSON.parse(data.success);
-      //  setResultsDrunk(data.success);
-      //  setResponseDrunk(data.success);
-      //}
     } catch (error) {
       console.log("error!!!");
       console.log(error);
@@ -72,7 +73,7 @@ function App() {
         {response && results ? (
           <>
             <Flex align="baseline" mt={2} flexDirection="column">
-              //<Text pt="34px">Drunk: {results_drunk}</Text>
+              <Text pt="34px">Drunk: {results_drunk}</Text>
               <Text pt="24px">Age: {results.age.value}</Text>
               <Text pt="24px">
                 Female Beauty Score: {results.beauty.female_score}
