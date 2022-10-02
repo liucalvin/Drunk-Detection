@@ -81,6 +81,12 @@ function App() {
                 Male Beauty Score: {results.beauty.male_score}
               </Text>
               <Text pt="24px">Gender: {results.gender.value}</Text>
+              <Text pt="24px">Sadness: {results.emotion.sadness}</Text>
+              <Text pt="24px">Disgust: {results.emotion.disgust}</Text>
+              <Text pt="24px">Anger: {results.emotion.anger}</Text>
+              <Text pt="24px">Surprise: {results.emotion.surprise}</Text>
+              <Text pt="24px">Fear: {results.emotion.fear}</Text>
+              <Text pt="24px">Happiness: {results.emotion.happiness}</Text>
               <Button
                 mt="24px"
                 onClick={() => {
