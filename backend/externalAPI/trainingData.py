@@ -43,6 +43,8 @@ index = 0
 #https://github.com/maxmastali/Drunk-Detection/blob/main/ml/taining-img/sober-img/Capture4.PNG?raw=true
 for url in noSpacesImageURLS:
 
+    print(url)
+
     # parameters to be sent to api
     tokenParameters = {'api_key': API_KEY,
                        'api_secret': API_SECRET_KEY,
@@ -86,5 +88,5 @@ for url in noSpacesImageURLS:
 
     index+=1
 
-    time.sleep(.5)
+    time.sleep(.7)
 
