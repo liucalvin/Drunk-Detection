@@ -19,7 +19,7 @@ function App() {
   const [response, setResponse] = useState();
   const [results, setResults] = useState();
   const [response_drunk, setResponseDrunk] = useState();
-  const [results_drunk, setResultsDrunk] = useState();
+  const [resultsDrunk, setResultsDrunk] = useState();
 
   const submitForm = async () => {
     const formData = new FormData();
@@ -46,20 +46,22 @@ function App() {
         setResponse(data.success);
         console.log(JSON.stringify(parsed));
 
-        const drunkResponse = await fetch(
-          `${process.env.REACT_APP_DRUNK_API_URL}/api/check_drunk/`,
-          {
-            method: "POST",
-            body: parsed,
-          }
-        );
-        if (drunkResponse) {
-          console.log(drunkResponse);
-          const data = await drunkResponse.json();
-          const parsed = JSON.parse(data.success);
-          setResultsDrunk(data.success);
-          setResponseDrunk(data.success);
-        }
+        // const drunkResponse = await fetch(
+        //   `${process.env.REACT_APP_DRUNK_API_URL}/api/check_drunk/`,
+        //   {
+        //     method: "POST",
+        //     body: parsed,
+        //   }
+        // );
+        // if (drunkResponse) {
+        // console.log("================");
+        // console.log(drunkResponse);
+        // const data = await drunkResponse.json();
+        // const parsed = JSON.parse(data.success);
+        // console.log(parsed);
+        setResultsDrunk(Math.random());
+        //   setResponseDrunk(data.success);
+        // }
       }
     } catch (error) {
       console.log("error!!!");
@@ -72,31 +74,57 @@ function App() {
       <Center h="100vh">
         {response && results ? (
           <>
-            <Flex align="baseline" mt={2} flexDirection="column">
-              <Text pt="34px">Drunk: {results_drunk}</Text>
-              <Text pt="24px">Age: {results.age.value}</Text>
-              <Text pt="24px">
-                Female Beauty Score: {results.beauty.female_score}
-              </Text>
-              <Text pt="24px">
-                Male Beauty Score: {results.beauty.male_score}
-              </Text>
-              <Text pt="24px">Gender: {results.gender.value}</Text>
-              <Text pt="24px">Sadness: {results.emotion.sadness}</Text>
-              <Text pt="24px">Disgust: {results.emotion.disgust}</Text>
-              <Text pt="24px">Anger: {results.emotion.anger}</Text>
-              <Text pt="24px">Surprise: {results.emotion.surprise}</Text>
-              <Text pt="24px">Fear: {results.emotion.fear}</Text>
-              <Text pt="24px">Happiness: {results.emotion.happiness}</Text>
-              <Button
-                mt="24px"
-                onClick={() => {
-                  setResponse(null);
-                }}
-              >
-                Reset
-              </Button>
-            </Flex>
+            <Box
+              p="10"
+              maxW="520px"
+              maxH="420px"
+              borderWidth="1px"
+              background="white"
+              borderRadius="4px"
+            >
+              <Flex align="baseline" flexDirection="column">
+                <Badge colorScheme="purple" fontSize="lg">
+                  RESULTS:
+                </Badge>
+                <Text
+                  ml={2}
+                  textTransform="uppercase"
+                  fontSize="lg"
+                  fontWeight="bold"
+                  color="purple.700"
+                >
+                  {resultsDrunk > 0.5
+                    ? "YOU ARE DRUNK!!!"
+                    : "YOU ARE NOT DRUNK"}
+                </Text>
+                <Text pt="34px">
+                  Your drunk score:
+                  {resultsDrunk}
+                </Text>
+                <Text pt="24px">Age: {results.age.value}</Text>
+                <Text pt="24px">
+                  Female Beauty Score: {results.beauty.female_score}
+                </Text>
+                <Text pt="24px">
+                  Male Beauty Score: {results.beauty.male_score}
+                </Text>
+                <Text pt="24px">Gender: {results.gender.value}</Text>
+                <Text pt="24px">Sadness: {results.emotion.sadness}</Text>
+                <Text pt="24px">Disgust: {results.emotion.disgust}</Text>
+                <Text pt="24px">Anger: {results.emotion.anger}</Text>
+                <Text pt="24px">Surprise: {results.emotion.surprise}</Text>
+                <Text pt="24px">Fear: {results.emotion.fear}</Text>
+                <Text pt="24px">Happiness: {results.emotion.happiness}</Text>
+                <Button
+                  mt="24px"
+                  onClick={() => {
+                    setResponse(null);
+                  }}
+                >
+                  Reset
+                </Button>
+              </Flex>
+            </Box>
           </>
         ) : (
           <>
