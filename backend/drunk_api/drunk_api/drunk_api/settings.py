@@ -82,9 +82,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "drunk_api.wsgi.application"
 
-CORS_ALLOWED_ORIGINS = [
-    env("CLIENT_URL"),
-]
+ALLOWED_HOSTS = ['*']
+CORS_ORIGIN_ALLOW_ALL = True
 
 DATABASES = {
     "default": {
