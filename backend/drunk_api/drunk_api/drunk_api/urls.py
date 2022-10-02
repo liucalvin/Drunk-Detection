@@ -18,11 +18,9 @@ from rest_framework import routers
 from drunk_api.drunkapp import views
 
 router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'groups', views.GroupViewSet)
 
 urlpatterns = [
     path('api/submit/', views.SubmitImage.as_view(), name="submit"),
-    #path('api/check_drunk/', views.CheckDrunk.as_view(), name="check_drunk"),
+    path('api/check_drunk/', views.CheckDrunk.as_view(), name="check_drunk"),
     path('api/ping/', views.Pong.as_view(), name="ping"),
 ]

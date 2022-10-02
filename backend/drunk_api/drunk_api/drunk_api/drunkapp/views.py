@@ -5,10 +5,9 @@ from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from drunk_api.drunkapp.externalAPI.internalFileUpload import face_plus_plus_analysis
-#from drunk_api.drunkapp.externalAPI.internalFileUpload import are_you_drunk
+from drunk_api.drunkapp.externalAPI.DrunkAnalyzer import are_you_drunk
 from drunk_api.drunkapp.serializers import UserSerializer, GroupSerializer
 from django.http import HttpResponse
-import requests
 import json
 
 
@@ -71,27 +70,31 @@ class SubmitImage(APIView):
                 })
         else:
             return Response("Image required!", 400)
-        
-#class CheckDrunk(APIView):
-#    """
-#    View to handle data request for drunkness detection
-#    """
 
-#    def get(self, request, format=None):
-#        """
-#        Return a list of all users.
-#        """
-#        print(request)
-#        return Response("request")
-#
-#    def post(self, request):
-#        """
-#        to submit a json
-#        """
-#        if request and request.POST:
-#            return Response({"success": are_you_drunk(json_input)})
-#        else:
-#            return Response("JSON required!", 400)
+
+class CheckDrunk(APIView):
+    """
+    View to handle data request for drunkness detection
+    """
+
+    def get(self, request, format=None):
+        """
+        Return a list of all users.
+        """
+        print(request)
+        return Response("request")
+
+    def post(self, request):
+        """
+        to submit a json
+        """
+        body_unicode = request.body.decode('utf-8')
+        body_data = json.loads(body_unicode)
+        if request and request.body:
+            print(body_data)
+            return Response({"success": are_you_drunk(body_data)})
+        else:
+            return Response("JSON required!", 400)
 
 
 class Pong(APIView):

@@ -1,21 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-import random
-import sys
-import json
 import numpy as np
-import os
-import pandas as pd
 import tensorflow as tf
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense
-from scikeras.wrappers import KerasClassifier
-from sklearn.model_selection import cross_val_score
-from sklearn.preprocessing import LabelEncoder
-from sklearn.model_selection import StratifiedKFold
-from sklearn.preprocessing import StandardScaler
-from sklearn.pipeline import Pipeline
 #import keras.datasets as keras_data
 
 def are_you_drunk(input_json):
