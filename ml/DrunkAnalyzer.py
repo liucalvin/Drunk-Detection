@@ -6,19 +6,20 @@ import sys
 import json
 import numpy as np
 import os
-import pandas as pd
+#import pandas as pd
 import tensorflow as tf
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense
-from scikeras.wrappers import KerasClassifier
-from sklearn.model_selection import cross_val_score
-from sklearn.preprocessing import LabelEncoder
-from sklearn.model_selection import StratifiedKFold
-from sklearn.preprocessing import StandardScaler
-from sklearn.pipeline import Pipeline
-import keras.datasets as keras_data
+#from tensorflow.keras.models import Sequential
+#from tensorflow.keras.layers import Dense
+#from scikeras.wrappers import KerasClassifier
+#from sklearn.model_selection import cross_val_score
+#from sklearn.preprocessing import LabelEncoder
+#from sklearn.model_selection import StratifiedKFold
+#from sklearn.preprocessing import StandardScaler
+#from sklearn.pipeline import Pipeline
+#import keras.datasets as keras_data
 
 def are_you_drunk(input_json):
+    input_json = json.load(input_json)
 
     types = ['landmark', 'attributes']
     mask = ['headpose']
@@ -70,6 +71,6 @@ def are_you_drunk(input_json):
     return min(yhat[0][0] * affirmative_action, 1)
 
 
-# print("Is Sober Drunk? --> " + str(are_you_drunk(json.load(open('./test/example_sober_face.json')))))
-# print("Is Drunk Drunk? --> " + str(are_you_drunk(json.load(open('./test/example_drunk_face.json')))))
-# print("Is Osman Drunk? --> " + str(are_you_drunk(json.load(open('./test/sober_test_osman.json')))))
+# print("Is Sober Drunk? --> " + str(are_you_drunk(open('./test/example_sober_face.json'))))
+# print("Is Drunk Drunk? --> " + str(are_you_drunk(open('./test/example_drunk_face.json'))))
+# print("Is Osman Drunk? --> " + str(are_you_drunk(open('./test/sober_test_osman.json'))))
