@@ -146,9 +146,9 @@ def create_baseline():
 # evaluate model with standardized dataset
 def evaluate_model():
     print("Evaluating Baseline Model")
-    estimator = KerasClassifier(model=create_baseline(), epochs=200, batch_size=10, verbose=2)
+    estimator = KerasClassifier(model=create_baseline(), epochs=200, batch_size=15, verbose=2)
     print("Created Estimator")
-    kfold = StratifiedKFold(n_splits=5, shuffle=True)
+    kfold = StratifiedKFold(n_splits=10, shuffle=True)
     print("Created kfold")
     results = cross_val_score(estimator, x, y, cv=kfold)
     print("Created results")
