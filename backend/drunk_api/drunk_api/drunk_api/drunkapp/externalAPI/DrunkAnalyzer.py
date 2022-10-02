@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+import json
 import numpy as np
 import tensorflow as tf
 #import keras.datasets as keras_data
 
-def are_you_drunk(input_json):
 
+def are_you_drunk(input_json):
+    print(input_json)
     input_json = json.load(input_json)
     types = ['landmark', 'attributes']
     mask = ['headpose']
@@ -16,8 +18,9 @@ def are_you_drunk(input_json):
 
     affirmative_action = 1
 
-    string_to_int = {'Male' : 0, 'Female' : 1, 'None' : 2}
+    string_to_int = {'Male': 0, 'Female': 1, 'None': 2}
     # Generates a single row [number1, number2...]
+
     def format_row_new(set):
         result = []
         for type in types:
@@ -30,7 +33,9 @@ def are_you_drunk(input_json):
                                 # print(type + '_' + metric + '_' + v + '_' + w + " = " + str(set['faces'][0][type][metric][v][w]))
                                 adders = set['faces'][0][type][metric][v][w]
                                 if (w == "stain"):
-                                    afirmative_action *= 0.85 + (set['faces'][0][type][metric][v][w]/100)*0.30
+                                    afirmative_action *= 0.85 + \
+                                        (set['faces'][0][type]
+                                         [metric][v][w]/100)*0.30
                                 if (isinstance(adders, str)):
                                     if (adders in string_to_int):
                                         adders = string_to_int[adders]
@@ -52,7 +57,7 @@ def are_you_drunk(input_json):
     fancy_model = tf.keras.models.load_model('models/baseline_0.h5')
 
     # make a prediction:
-    #print(np.array(format_row_new(input_json)))
+    # print(np.array(format_row_new(input_json)))
     yhat = fancy_model.predict(np.array([format_row_new(input_json)]))
 
     return min(yhat[0][0] * affirmative_action, 1)

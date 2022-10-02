@@ -94,7 +94,7 @@ class CheckDrunk(APIView):
         body_data = json.dumps(body_unicode)
         if request and request.body:
             print(body_data)
-            return Response({"success":  round(random.uniform(0, 1.000), 2)})
+            return Response({"success":  are_you_drunk(body_data)})
             # are_you_drunk(body_data)
             #  round(random.uniform(0, 1.000), 2)
         else:
