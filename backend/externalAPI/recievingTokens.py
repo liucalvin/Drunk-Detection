@@ -10,8 +10,8 @@ sober_files = os.listdir("../../ml/training-img/sober-img")
 drunk_files = os.listdir("../../ml/training-img/drunk-img")
 
 
-DRUNK_BASE_URL = "https://github.com/maxmastali/Drunk-Detection/blob/main/ml/taining-img/drunk-img/"
-SOBER_BASE_URL = "https://github.com/maxmastali/Drunk-Detection/blob/main/ml/taining-img/sober-img/"
+DRUNK_BASE_URL = "https://github.com/maxmastali/Drunk-Detection/blob/main/ml/training-img/drunk-img/"
+SOBER_BASE_URL = "https://github.com/maxmastali/Drunk-Detection/blob/main/ml/training-img/sober-img/"
 
 #listdear
 
@@ -21,9 +21,9 @@ API_ENDPOINT_PARAMETERS = "https://api-us.faceplusplus.com/facepp/v3/detect"
 API_ENDPOINT_METRICS = "https://api-us.faceplusplus.com/facepp/v3/face/analyze"
 
 # your API key here
-API_KEY = ""
+API_KEY = "kIUCMuGnUQd6IubuCqgIrBlDybZAq3HY"
 
-API_SECRET_KEY = ""
+API_SECRET_KEY = "APjSP3feDjklNt27__tkKnqiOAsQymmV"
 
 imageURLS = []
 noSpacesImageURLS = []
@@ -74,9 +74,9 @@ for url in noSpacesImageURLS:
 
     if DRUNK_BASE_URL in url:
         # open text file
-        text_file = open(f'../../ml/training-json/drunk/{url[len(SOBER_BASE_URL):]}.json', "w")
+        text_file = open(f'../../ml/training-json/drunk/{url[len(SOBER_BASE_URL):-13]}.json', "w")
     else:
-        text_file = open(f'../../ml/training-json/sober/{url[len(SOBER_BASE_URL):]}.json', "w")
+        text_file = open(f'../../ml/training-json/sober/{url[len(SOBER_BASE_URL):-13]}.json', "w")
 
     # write string to file
     n = text_file.write(pastebin_url2)
