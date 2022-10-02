@@ -47,7 +47,7 @@ function App() {
         console.log(JSON.stringify(parsed));
 
         const drunkResponse = await fetch(
-          `${process.env.REACT_APP_DRUNK_API_URL}/api/check_drunk/`,
+          `${process.env.REACT_APP_DRUNK_API_URL}api/check_drunk/`,
           {
             method: "POST",
             body: parsed,
