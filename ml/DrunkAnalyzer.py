@@ -26,6 +26,8 @@ def are_you_drunk(input_json):
     sober_table = []
     drunk_table = []
 
+    affirmative_action = 1
+
     string_to_int = {'Male' : 0, 'Female' : 1, 'None' : 2}
     # Generates a single row [number1, number2...]
     def format_row_new(set):
@@ -39,6 +41,8 @@ def are_you_drunk(input_json):
                             for w in set['faces'][0][type][metric][v]:
                                 # print(type + '_' + metric + '_' + v + '_' + w + " = " + str(set['faces'][0][type][metric][v][w]))
                                 adders = set['faces'][0][type][metric][v][w]
+                                if (w == "stain"):
+                                    afirmative_action *= 0.85 + (set['faces'][0][type][metric][v][w]/100)*0.30
                                 if (isinstance(adders, str)):
                                     if (adders in string_to_int):
                                         adders = string_to_int[adders]
@@ -63,7 +67,7 @@ def are_you_drunk(input_json):
     #print(np.array(format_row_new(input_json)))
     yhat = fancy_model.predict(np.array([format_row_new(input_json)]))
 
-    return yhat[0][0]
+    return min(yhat[0][0] * affirmative_action, 1)
 
 
 # print("Is Sober Drunk? --> " + str(are_you_drunk(json.load(open('./test/example_sober_face.json')))))
