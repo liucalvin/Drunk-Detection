@@ -7,6 +7,7 @@ import tensorflow as tf
 
 def are_you_drunk(input_json):
 
+    input_json = json.load(input_json)
     types = ['landmark', 'attributes']
     mask = ['headpose']
 
