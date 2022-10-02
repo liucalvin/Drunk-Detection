@@ -23,7 +23,7 @@ function App() {
 
     try {
       console.log(process.env.REACT_APP_DRUNK_API_URL);
-      const response = await fetch(process.env.REACT_APP_DRUNK_API_URL, {
+      const response = await fetch(`${process.env.REACT_APP_DRUNK_API_URL}/api/submit`, {
         method: "POST",
         body: formData,
       });
@@ -43,7 +43,19 @@ function App() {
     <ChakraProvider>
       <Center h="100vh">
         {response ? (
-          <Text>{response.toString()}</Text>
+          <>
+            <Flex align="baseline" mt={2} flexDirection="column">
+              <Text>{response.toString()}</Text>
+              <Button
+                mt="24px"
+                onClick={() => {
+                  setResponse(null);
+                }}
+              >
+                Reset
+              </Button>
+            </Flex>
+          </>
         ) : (
           <Box p="10" maxW="520px" borderWidth="1px">
             <Flex align="baseline" mt={2}>

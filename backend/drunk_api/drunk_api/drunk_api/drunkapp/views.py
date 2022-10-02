@@ -1,3 +1,4 @@
+import base64
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
@@ -59,8 +60,11 @@ class SubmitImage(APIView):
         if request and request.FILES:
             if "file" in request.FILES:
                 file = request.FILES["file"]
-                print(file)
-                return Response(json.dumps("request"))
+                print(file.__dict__)
+                with file.open("rb") as img_file:
+                    encodedImage = base64.b64encode(img_file.read())
+                    print(encodedImage)
+                return Response(json.dumps({"successfully encoded to base64:": encodedImage}))
         else:
             return Response("Image required!", 400)
 

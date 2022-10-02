@@ -1,1 +1,1 @@
-web: gunicorn drunk_api.wsgi
+web: gunicorn drunk_api.wsgi --log-file -
