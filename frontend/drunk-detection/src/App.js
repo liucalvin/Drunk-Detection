@@ -77,25 +77,55 @@ function App() {
           <>
             <Image
               src="IMG_0305.jpg"
-              w="100%"
+              w="50%"
               h="33%"
               top={0}
+              left={0}
               position="absolute"
               zIndex={-2}
             />
             <Image
               src="IMG_0305.jpg"
-              w="100%"
+              w="50%"
               h="34%"
               top={180}
+              left={0}
               position="absolute"
               zIndex={-2}
             />
             <Image
               src="IMG_0305.jpg"
-              w="100%"
+              w="50%"
               h="33%"
               bottom={0}
+              left={0}
+              position="absolute"
+              zIndex={-2}
+            />
+            <Image
+              src="IMG_0305.jpg"
+              w="50%"
+              h="33%"
+              top={0}
+              right={0}
+              position="absolute"
+              zIndex={-2}
+            />
+            <Image
+              src="IMG_0305.jpg"
+              w="50%"
+              h="34%"
+              top={180}
+              right={0}
+              position="absolute"
+              zIndex={-2}
+            />
+            <Image
+              src="IMG_0305.jpg"
+              w="50%"
+              h="33%"
+              bottom={0}
+              right={0}
               position="absolute"
               zIndex={-2}
             />
