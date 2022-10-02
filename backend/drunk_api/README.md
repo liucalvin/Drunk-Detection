@@ -1,9 +1,9 @@
 # Drunk API
 
-1. Open a terminal in the backend folder
+1. Open a terminal in the backend/drunk_api/ folder
 
 ```
-cd backend/
+cd backend/drunk_api/
 ```
 
 2. Create and activate a virtual environment
