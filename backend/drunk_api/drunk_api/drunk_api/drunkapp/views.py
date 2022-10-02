@@ -1,4 +1,6 @@
 import base64
+from random import randint
+import random
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
@@ -92,7 +94,8 @@ class CheckDrunk(APIView):
         body_data = json.loads(body_unicode)
         if request and request.body:
             print(body_data)
-            return Response({"success": are_you_drunk(body_data)})
+            return Response({"success": round(random.uniform(0, 1.000), 2)})
+            # are_you_drunk(body_data)
         else:
             return Response("JSON required!", 400)
 
