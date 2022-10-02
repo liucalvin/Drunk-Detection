@@ -88,7 +88,7 @@ function App() {
               src="IMG_0305.jpg"
               w="50%"
               h="34%"
-              top={180}
+              pos="50%"
               left={0}
               position="absolute"
               zIndex={-2}
@@ -115,7 +115,7 @@ function App() {
               src="IMG_0305.jpg"
               w="50%"
               h="34%"
-              top={180}
+              pos="50%"
               right={0}
               position="absolute"
               zIndex={-2}
